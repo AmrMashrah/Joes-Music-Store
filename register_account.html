@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Order Summary</title>
+
+	<link rel="stylesheet" href="styles/main.css">
+	
+	<link rel="stylesheet" href="styles/tickets.css">
+<style type="text/css">
+    @import "register.css";
+    dt {
+        font-weight: bold;
+    }
+</style>
+<script type="text/javascript">
+//<![CDATA[
+var decode = function ( text ) {
+    text = text.replace(/\+/g, " ");
+    text = text.replace(/%[a-fA-F0-9]{2}/g, 
+        function ( text ) {
+            return String.fromCharCode( "0x" + text.substr(1,2));
+        }
+    );
+    return text;
+}
+    
+var display_data = function () {
+    var query = location.search.replace("?", "");
+    if ( query == "" ) return;
+    
+    var fields = query.split("&");
+    
+    if ( fields.length == 0 ) {
+        document.write("<p>No data was submitted.</p>");
+    } else {
+        document.write("<dl>");
+        var field_parts;
+        for ( var i in fields ) {
+            field_parts = fields[i].split("=");
+            field_parts[0] = decode( field_parts[0] );
+            field_parts[1] = decode( field_parts[1] );
+            document.write("<dt>" + field_parts[0] + "</dt>");
+            document.write("<dd>" + field_parts[1] + "</dd>");
+        }
+        document.write("</dl>");
+    }
+}
+//]]>
+</script>
+</head>
+
+
+<body>
+	<header>
+		<img src="images/town_hall_logo.gif" alt="Town Hall logo" height="80">
+		<hgroup>
+			<h1>Joes Music And Records</h1>
+			<h2>Celebrating our <span class="shadow">20<sup>th</sup></span> Year</h2>
+		</hgroup>
+	</header>
+	<nav>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Music</a>
+			<ul>
+	
+				<li><a href="Country.html">Country</a></li>
+				<li><a href="Rock.html">Rock</a></li>
+				<li><a href="HipHop.html">Hip-Hop</a></li>
+				<li><a href="Classical.html">Classical</a>
+				</li>
+			</ul>
+		</li>
+		<li><a href="Location.html">Location</a></li>
+			
+		
+		<li><a href="Contact.html">Contact</a></li>
+		<li><a href="About.html">About</a></li>
+		<li><a href="SignInUp.html">Sign In/Up</a></li>
+	</ul>
+</nav>
+
+<div id="content">
+    <h1>Order Summary</h1>
+    <p>Your order has been submitted with the following
+    data:</p>
+    <script type="text/javascript">display_data();</script>
+</body>
+</html>
